@@ -1,7 +1,7 @@
 const tripStart = new Date('2026-08-23T04:00:00+09:00');
 const countdown = document.querySelector('#countdown');
 const jejuCenter = [33.38, 126.55];
-const restaurants = [
+const defaultRestaurants = [
   ['중문흑돼지천국', '흑돼지', '중문 흑돼지 후보'], ['기원은갈치', '갈치조림', '중문 통갈치조림구이'],
   ['한라산아래 첫마을', '한식', '부모님 모시기 좋은 곳'], ['바람에 스치운다', '한식', '아이와 함께 가기 좋은 후보'],
   ['담백', '한식', '아이와 함께 가기 좋은 후보'], ['리볼버', '양고기', '메쉬포테이토 · 데이트'],
@@ -9,14 +9,14 @@ const restaurants = [
   ['요리바카', '배달', '배달 가능한 맛집'], ['평대성게국수', '로컬', '로컬 분위기 성게국수'],
   ['위이', '카페', '좋은 카페'], ['백한철꽈배기', '간식', '꽈배기'],
   ['시스터필드', '베이커리', '식빵'], ['플라워웨이브', '베이커리', '베이커리'],
-  ['로빙화', '이색', '이색적인 후보'], ['수리코', '맛집', '웨이팅 가능'],
-].map(([name, category, note]) => ({ name, category, note }));
+  ['로빙화', '이색', '이색적인 후보'], ['수리코', '맛집', '웨이팅 가능', '제주특별자치도 제주시 한경면 조수리 1085'],
+].map(([name, category, note, search]) => ({ name, category, note, search }));
 const specialPlaces = [
   { name: '포에마스테이', search: '제주시 한림읍 명월로 13', note: '숙소 · 체크인 8/23 15:00', color: '#0c6e68' },
   { name: '제주국제공항', search: '제주국제공항', note: '항공 · 렌터카 반납 장소', color: '#1769e0' },
   { name: '제주도 집', search: '제주시 한경면 저지리 2068-2', note: '집 보기/관리', color: '#7a5195' },
 ];
-const activities = [
+const defaultActivities = [
   { name: '판포포구', category: '스노클링 · 서부', note: '포구형이라 초보·가족 물놀이 후보. 물때와 파도 확인 필수.', search: '판포포구' },
   { name: '협재해수욕장', category: '스노클링 · 서부', note: '숙소와 가깝고 편의시설이 있는 대표 해변.', search: '협재해수욕장' },
   { name: '곽지해수욕장', category: '스노클링 · 북서', note: '애월권 해변 후보. 당일 해상 상태가 좋을 때 선택.', search: '곽지해수욕장' },
@@ -25,6 +25,19 @@ const activities = [
   { name: '모슬포항 배낚시', category: '배낚시 · 남서', note: '남서권 출항 후보. 출항 시간과 멀미약을 미리 확인.', search: '모슬포항' },
   { name: '제주도 집 보기', category: '관리', note: '제주시 한경면 저지리 2068-2', specialIndex: 2 },
 ];
+const PERSONAL_STORAGE_KEY = 'jeju-guide-personal-v1';
+function copy(value) { return JSON.parse(JSON.stringify(value)); }
+function loadPersonalLists() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(PERSONAL_STORAGE_KEY));
+    const savedRestaurants = Array.isArray(saved?.restaurants) ? saved.restaurants : copy(defaultRestaurants);
+    return { restaurants: savedRestaurants.map((place) => place.name === '수리코' ? { ...place, search: '제주특별자치도 제주시 한경면 조수리 1085' } : place), activities: Array.isArray(saved?.activities) ? saved.activities : copy(defaultActivities) };
+  } catch { return { restaurants: copy(defaultRestaurants), activities: copy(defaultActivities) }; }
+}
+const personalLists = loadPersonalLists();
+let restaurants = personalLists.restaurants;
+let activities = personalLists.activities;
+function savePersonalLists() { localStorage.setItem(PERSONAL_STORAGE_KEY, JSON.stringify({ restaurants, activities })); }
 
 let map;
 let mapStarted = false;
@@ -62,9 +75,11 @@ function renderRestaurantCards() {
       <p class="place-category">${place.category}</p><h3>${place.name}</h3><p>${place.note}</p>
       <p class="distance" data-distance="${index}">장소 위치를 불러오는 중…</p>
       <button class="map-link-button" type="button" data-show-place="${index}" disabled>지도에서 보기</button>
-      <a href="${kakaoSearchUrl(place.name)}" target="_blank" rel="noreferrer">카카오맵 ↗</a>
+      <a href="${kakaoSearchUrl(place.search || place.name)}" target="_blank" rel="noreferrer">카카오맵 ↗</a>
+      <button class="map-link-button delete-card" type="button" data-delete-food="${index}">삭제</button>
     </article>`).join('');
   document.querySelectorAll('[data-show-place]').forEach((button) => button.addEventListener('click', () => focusPlace(Number(button.dataset.showPlace))));
+  document.querySelectorAll('[data-delete-food]').forEach((button) => button.addEventListener('click', () => deleteCard('food', Number(button.dataset.deleteFood))));
 }
 
 function renderActivityCards() {
@@ -74,8 +89,56 @@ function renderActivityCards() {
       <p class="distance" data-activity-distance="${index}">장소 위치를 불러오는 중…</p>
       <button class="map-link-button" type="button" data-show-activity="${index}" disabled>지도에서 보기</button>
       <a href="${kakaoSearchUrl(activity.search || specialPlaces[activity.specialIndex].search)}" target="_blank" rel="noreferrer">카카오맵 ↗</a>
+      <button class="map-link-button delete-card" type="button" data-delete-activity="${index}">삭제</button>
     </article>`).join('');
   document.querySelectorAll('[data-show-activity]').forEach((button) => button.addEventListener('click', () => focusActivity(Number(button.dataset.showActivity))));
+  document.querySelectorAll('[data-delete-activity]').forEach((button) => button.addEventListener('click', () => deleteCard('activity', Number(button.dataset.deleteActivity))));
+}
+
+function refreshFoodCards() {
+  restaurantMarkers.forEach((marker) => marker.remove());
+  restaurantMarkers.clear();
+  placesStarted = false;
+  renderRestaurantCards();
+  if (mapStarted) loadRestaurantLocations();
+}
+
+function refreshActivityCards() {
+  activityMarkers.forEach((marker) => marker.remove());
+  activityMarkers.clear();
+  activitiesStarted = false;
+  renderActivityCards();
+  if (activityMapStarted) loadActivityLocations();
+}
+
+function deleteCard(kind, index) {
+  if (!confirm('이 카드를 개인 목록에서 삭제할까요?')) return;
+  if (kind === 'food') { restaurants.splice(index, 1); refreshFoodCards(); }
+  else { activities.splice(index, 1); refreshActivityCards(); }
+  savePersonalLists();
+}
+
+function openCardDialog(kind) {
+  const dialog = document.querySelector('#card-dialog');
+  document.querySelector('#card-form').reset();
+  document.querySelector('#card-kind').value = kind;
+  document.querySelector('#card-dialog-title').textContent = kind === 'food' ? '맛집 카드 추가' : '활동 카드 추가';
+  dialog.showModal();
+}
+
+function saveNewCard(event) {
+  event.preventDefault();
+  const kind = document.querySelector('#card-kind').value;
+  const name = document.querySelector('#card-name').value.trim();
+  const search = document.querySelector('#card-location').value.trim();
+  const category = document.querySelector('#card-category').value.trim() || (kind === 'food' ? '내 맛집' : '내 활동');
+  const note = document.querySelector('#card-note').value.trim() || '메모 없음';
+  if (!name || !search) return;
+  const card = { name, search, category, note };
+  if (kind === 'food') { restaurants.push(card); refreshFoodCards(); }
+  else { activities.push(card); refreshActivityCards(); }
+  savePersonalLists();
+  document.querySelector('#card-dialog').close();
 }
 
 function distanceInMeters(from, to) {
@@ -160,11 +223,22 @@ function loadKakaoPlaces() {
   return kakaoSdkPromise;
 }
 
-function findPlace(search, places) {
-  return new Promise((resolve) => places.keywordSearch(`${search} 제주`, (results, status) => {
+function searchKeyword(search, places) {
+  return new Promise((resolve) => places.keywordSearch(search, (results, status) => {
     if (status !== kakao.maps.services.Status.OK || !results.length) { resolve(null); return; }
     resolve({ lat: Number(results[0].y), lng: Number(results[0].x) });
   }));
+}
+
+async function findPlace(search, places) {
+  const exactResult = await searchKeyword(search, places);
+  if (exactResult || search.includes('제주')) return exactResult;
+  return searchKeyword(`${search} 제주`, places);
+}
+
+async function resolvePlaceLocation(search, places, geocoder) {
+  const addressResult = await findAddress(search, geocoder);
+  return addressResult || findPlace(search, places);
 }
 
 async function loadRestaurantLocations() {
@@ -174,9 +248,10 @@ async function loadRestaurantLocations() {
   try {
     await loadKakaoPlaces();
     const places = new kakao.maps.services.Places();
+    const geocoder = new kakao.maps.services.Geocoder();
     let found = 0;
     for (const [index, place] of restaurants.entries()) {
-      place.coordinates = await findPlace(place.name, places);
+      place.coordinates = await resolvePlaceLocation(place.search || place.name, places, geocoder);
       if (place.coordinates) { addRestaurantMarker(place, index); found += 1; } else place.notFound = true;
       updateDistances();
     }
@@ -205,9 +280,10 @@ async function loadActivityLocations() {
   try {
     await loadKakaoPlaces();
     const places = new kakao.maps.services.Places();
+    const geocoder = new kakao.maps.services.Geocoder();
     for (const [index, activity] of activities.entries()) {
       if (activity.specialIndex !== undefined) continue;
-      activity.coordinates = await findPlace(activity.search, places);
+      activity.coordinates = await resolvePlaceLocation(activity.search, places, geocoder);
       if (activity.coordinates) addActivityMarker(activity, index);
       else activity.notFound = true;
       updateDistances();
@@ -358,9 +434,55 @@ function requestCurrentLocation(target = 'food') {
   navigator.geolocation.getCurrentPosition((position) => showCurrentLocation(position, target), (error) => showLocationError(error, target), { enableHighAccuracy: false, timeout: 12000, maximumAge: 300000 });
 }
 
+const SCHEDULE_STORAGE_KEY = 'jeju-guide-schedule-v1';
+function loadScheduleOverrides() {
+  try { return JSON.parse(localStorage.getItem(SCHEDULE_STORAGE_KEY)) || {}; } catch { return {}; }
+}
+function applyScheduleOverrides() {
+  const overrides = loadScheduleOverrides();
+  document.querySelectorAll('.timeline-item').forEach((item, index) => {
+    item.dataset.scheduleKey = index;
+    const saved = overrides[index];
+    if (saved) {
+      item.querySelector('time').textContent = saved.time;
+      item.querySelector('h3').textContent = saved.title;
+      item.querySelector('p').textContent = saved.note;
+    }
+    const editButton = document.createElement('button');
+    editButton.type = 'button'; editButton.className = 'schedule-edit'; editButton.textContent = '수정';
+    editButton.addEventListener('click', () => openScheduleDialog(index, item));
+    item.querySelector('div').append(editButton);
+  });
+}
+function openScheduleDialog(index, item) {
+  document.querySelector('#schedule-key').value = index;
+  document.querySelector('#schedule-time').value = item.querySelector('time').textContent.trim();
+  document.querySelector('#schedule-title').value = item.querySelector('h3').textContent.trim();
+  document.querySelector('#schedule-note').value = item.querySelector('p').textContent.trim();
+  document.querySelector('#schedule-dialog').showModal();
+}
+function saveScheduleEdit(event) {
+  event.preventDefault();
+  const key = document.querySelector('#schedule-key').value;
+  const data = { time: document.querySelector('#schedule-time').value.trim(), title: document.querySelector('#schedule-title').value.trim(), note: document.querySelector('#schedule-note').value.trim() };
+  if (!data.time || !data.title) return;
+  const overrides = loadScheduleOverrides(); overrides[key] = data;
+  localStorage.setItem(SCHEDULE_STORAGE_KEY, JSON.stringify(overrides));
+  const item = document.querySelector(`.timeline-item[data-schedule-key="${key}"]`);
+  item.querySelector('time').textContent = data.time; item.querySelector('h3').textContent = data.title; item.querySelector('p').textContent = data.note;
+  document.querySelector('#schedule-dialog').close();
+}
+function resetPersonalChanges() {
+  if (!confirm('추가·삭제한 카드와 수정한 일정 시간을 모두 기본값으로 되돌릴까요?')) return;
+  localStorage.removeItem(PERSONAL_STORAGE_KEY);
+  localStorage.removeItem(SCHEDULE_STORAGE_KEY);
+  window.location.reload();
+}
+
 updateCountdown();
 renderRestaurantCards();
 renderActivityCards();
+applyScheduleOverrides();
 document.querySelectorAll('[data-tab]').forEach((button) => button.addEventListener('click', () => {
   document.querySelectorAll('[data-tab]').forEach((item) => { item.classList.toggle('is-active', item === button); item.setAttribute('aria-selected', item === button); });
   document.querySelectorAll('.panel').forEach((panel) => { const active = panel.id === button.dataset.tab; panel.classList.toggle('is-active', active); panel.hidden = !active; });
@@ -378,4 +500,10 @@ document.querySelector('#info-location-button').addEventListener('click', () => 
 document.querySelector('#map-all-button').addEventListener('click', () => { initializeMap(); showAllPlaces(); });
 document.querySelector('#activity-map-all-button').addEventListener('click', () => { initializeActivityMap(); showAllActivities(); });
 document.querySelector('#info-map-all-button').addEventListener('click', () => { initializeInfoMap(); showAllInfoPlaces(); });
+document.querySelector('#add-food-button').addEventListener('click', () => openCardDialog('food'));
+document.querySelector('#add-activity-button').addEventListener('click', () => openCardDialog('activity'));
+document.querySelector('#card-form').addEventListener('submit', saveNewCard);
+document.querySelector('#schedule-form').addEventListener('submit', saveScheduleEdit);
+document.querySelector('#reset-personal-button').addEventListener('click', resetPersonalChanges);
+document.querySelectorAll('.dialog-close').forEach((button) => button.addEventListener('click', () => button.closest('dialog').close()));
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('./service-worker.js'));
