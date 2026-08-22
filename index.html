@@ -77,15 +77,25 @@
       </section>
 
       <section class="panel" id="activity" role="tabpanel" aria-labelledby="activity-tab" hidden>
-        <div class="section-heading"><div><p class="eyebrow">TO DO</p><h2>할거</h2></div></div>
-        <article class="activity-card featured"><span>8/24</span><h3>스노클링</h3><p>오전 또는 오후 · 장소와 예약 정보 추가 예정</p><button type="button" class="outline-button">정보 추가 예정</button></article>
-        <article class="activity-card featured"><span>8/24</span><h3>배낚시</h3><p>오전 또는 오후 · 장소와 예약 정보 추가 예정</p><button type="button" class="outline-button">정보 추가 예정</button></article>
-        <article class="activity-card"><span>관리</span><h3>제주도 집 보기</h3><p>제주시 한경면 저지리 2068-2</p><a href="https://map.kakao.com/link/search/%EC%A0%9C%EC%A3%BC%EC%8B%9C%20%ED%95%9C%EA%B2%BD%EB%A9%B4%20%EC%A0%80%EC%A7%80%EB%A6%AC%202068-2" target="_blank" rel="noreferrer">위치 보기 ↗</a></article>
-        <div class="empty-state"><span>＋</span><p>오름, 계곡, 다른 명소를<br />여기에 추가해요.</p></div>
+        <div class="section-heading"><div><p class="eyebrow">TO DO</p><h2>할거</h2></div><button class="location-button" id="activity-location-button">⌖ 내 위치</button></div>
+        <div class="map-wrap">
+          <div id="activity-map" aria-label="제주 활동 지도"></div>
+          <div class="map-loading" id="activity-map-status"><span>⌖</span><strong>제주 활동 지도를 준비 중</strong><p>장소가 정해진 활동부터 지도에 표시합니다.</p></div>
+          <button class="map-all-button" id="activity-map-all-button" type="button">제주도 전체 보기</button>
+        </div>
+        <p class="location-message" id="activity-location-message" aria-live="polite"></p>
+        <div class="food-grid" id="activity-list"></div>
+        <div class="empty-state"><span>＋</span><p>오름, 계곡, 다른 명소도<br />이 목록에 추가해요.</p></div>
       </section>
 
       <section class="panel" id="info" role="tabpanel" aria-labelledby="info-tab" hidden>
-        <div class="section-heading"><div><p class="eyebrow">TRIP DETAILS</p><h2>여행 정보</h2></div></div>
+        <div class="section-heading"><div><p class="eyebrow">TRIP DETAILS</p><h2>여행 정보</h2></div><button class="location-button" id="info-location-button">⌖ 내 위치</button></div>
+        <div class="map-wrap">
+          <div id="info-map" aria-label="여행 주요 장소 지도"></div>
+          <div class="map-loading" id="info-map-status"><span>⌖</span><strong>여행 주요 장소 지도를 준비 중</strong><p>숙소, 공항, 제주도 집을 표시합니다.</p></div>
+          <button class="map-all-button" id="info-map-all-button" type="button">주요 장소 전체 보기</button>
+        </div>
+        <p class="location-message" id="info-location-message" aria-live="polite"></p>
         <article class="info-card"><p class="place-category">STAY</p><h3>포에마스테이</h3><p>제주시 한림읍 명월로 13<br />(명월리 1867-1), 63014</p><dl><div><dt>체크인</dt><dd>8/23 15:00</dd></div><div><dt>체크아웃</dt><dd>8/25 11:00</dd></div></dl></article>
         <article class="info-card"><p class="place-category">RENTAL CAR</p><h3>제주빌리고</h3><p>제주공항렌터카 본사 · 공항 약 3분 거리</p><dl><div><dt>인수</dt><dd>8/23 07:30</dd></div><div><dt>반납</dt><dd>8/25 07:30</dd></div></dl><a href="tel:064-744-4800">전화 064-744-4800</a><p class="small-note">공항 5번 게이트 건너편 렌터카하우스 앞 5구역(바닥 8번)에서 셔틀 탑승 · 10~15분 간격</p></article>
         <article class="info-card"><p class="place-category">FLIGHT</p><h3>항공편</h3><dl><div><dt>8/23</dt><dd>06:15 출발 · 07:30 제주 도착</dd></div><div><dt>8/25</dt><dd>07:55 제주 출발 · 09:10 서울 도착</dd></div></dl></article>
