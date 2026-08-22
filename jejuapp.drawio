@@ -1,0 +1,61 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="페이지-1" id="8zoKnU62TIH4oQZJ2GYh">
+    <mxGraphModel dx="1664" dy="914" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="605" width="500" x="190" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="먹을거" vertex="1">
+          <mxGeometry height="230" width="160" x="254" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="할거" vertex="1">
+          <mxGeometry height="230" width="160" x="480" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-6" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="중요 일정표" vertex="1">
+          <mxGeometry height="240" width="386" x="254" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-7" parent="smp9v5IjHO8Wc3iOBDUC-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="8/23 09:00" vertex="1">
+          <mxGeometry height="30" width="386" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-8" parent="smp9v5IjHO8Wc3iOBDUC-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="08/23 10:00" vertex="1">
+          <mxGeometry height="30" width="386" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-9" parent="smp9v5IjHO8Wc3iOBDUC-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="08/23 11:00" vertex="1">
+          <mxGeometry height="30" width="386" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-10" parent="smp9v5IjHO8Wc3iOBDUC-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="08/23 11:00" vertex="1">
+          <mxGeometry height="30" width="386" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-11" parent="smp9v5IjHO8Wc3iOBDUC-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="..." vertex="1">
+          <mxGeometry height="30" width="386" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-12" parent="smp9v5IjHO8Wc3iOBDUC-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="08/23 11:00" vertex="1">
+          <mxGeometry height="30" width="386" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-13" parent="smp9v5IjHO8Wc3iOBDUC-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="08/25 07:55 --&amp;gt; 제주공항 이륙" vertex="1">
+          <mxGeometry height="30" width="386" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="420" width="500" x="190" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="레스토랑 A&lt;div&gt;평점&lt;/div&gt;&lt;div&gt;메뉴&lt;/div&gt;&lt;div&gt;거리&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="186" x="254" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="레스토랑 C&lt;div&gt;평점&lt;/div&gt;&lt;div&gt;메뉴&lt;/div&gt;&lt;div&gt;거리&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="186" x="254" y="980" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="레스토랑 B&lt;div&gt;평점&lt;/div&gt;&lt;div&gt;메뉴&lt;/div&gt;&lt;div&gt;거리&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="186" x="467" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-19" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="레스토랑 D&lt;div&gt;평점&lt;/div&gt;&lt;div&gt;메뉴&lt;/div&gt;&lt;div&gt;거리&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="186" x="467" y="980" as="geometry" />
+        </mxCell>
+        <mxCell id="smp9v5IjHO8Wc3iOBDUC-20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="지도 : 현재 위치 + 모든 추천 맛집 위치" vertex="1">
+          <mxGeometry height="140" width="399" x="254" y="720" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

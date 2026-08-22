@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0c6e68" />
+    <meta name="description" content="2026 제주도 여행 가이드" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>JEJU · 08.23—08.25</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <p class="eyebrow">2026 SUMMER TRIP</p>
+        <h1>JEJU</h1>
+        <p class="trip-date">8.23 일 — 8.25 화 · 2박 3일</p>
+        <div class="countdown" id="countdown" aria-live="polite">여행 정보를 불러오는 중</div>
+      </header>
+
+      <nav class="tabs" aria-label="여행 가이드 메뉴" role="tablist">
+        <button class="tab is-active" id="schedule-tab" role="tab" aria-selected="true" aria-controls="schedule" data-tab="schedule">일정</button>
+        <button class="tab" id="food-tab" role="tab" aria-selected="false" aria-controls="food" data-tab="food">먹을거</button>
+        <button class="tab" id="activity-tab" role="tab" aria-selected="false" aria-controls="activity" data-tab="activity">할거</button>
+        <button class="tab" id="info-tab" role="tab" aria-selected="false" aria-controls="info" data-tab="info">정보</button>
+      </nav>
+
+      <section class="panel is-active" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">KEY MOMENTS</p>
+            <h2>중요 일정표</h2>
+          </div>
+          <span class="chip">시간은 확인 후 수정</span>
+        </div>
+
+        <div class="day-switcher" aria-label="날짜 선택">
+          <button class="day-button is-active" data-day="23">8/23<br /><strong>일</strong></button>
+          <button class="day-button" data-day="24">8/24<br /><strong>월</strong></button>
+          <button class="day-button" data-day="25">8/25<br /><strong>화</strong></button>
+        </div>
+
+        <ol class="timeline" data-timeline="23">
+          <li class="timeline-item important"><time>04:00</time><div><span class="event-type">권장</span><h3>양천향교에서 공항으로 출발</h3><p>06:15 제주행 기준 · 당일 교통 상황을 전날 다시 확인</p></div></li>
+          <li class="timeline-item important"><time>04:45</time><div><span class="event-type">권장</span><h3>김포공항 도착</h3><p>항공편 수속 및 탑승 준비</p></div></li>
+          <li class="timeline-item important"><time>06:15</time><div><span class="event-type">항공</span><h3>김포공항 출발</h3><p>제주행 항공편</p></div></li>
+          <li class="timeline-item important"><time>07:30</time><div><span class="event-type">항공</span><h3>제주공항 도착</h3><p>도착 후 렌터카 셔틀 탑승</p></div></li>
+          <li class="timeline-item important"><time>07:30</time><div><span class="event-type">렌터카</span><h3>제주빌리고 인수</h3><p>공항 5번 게이트 건너편 렌터카하우스 앞 5구역(바닥 8번)</p></div></li>
+          <li class="timeline-item free"><time>오전—14:30</time><div><span class="event-type">FREE</span><h3>자유 시간</h3><p>아침·관광·점심 후보를 정해 보세요.</p></div></li>
+          <li class="timeline-item important"><time>15:00</time><div><span class="event-type">숙소</span><h3>포에마스테이 체크인</h3><p>제주시 한림읍 명월로 13</p></div></li>
+          <li class="timeline-item free"><time>저녁</time><div><span class="event-type">FREE</span><h3>자유 시간</h3><p>한림·서부권 저녁 및 휴식</p></div></li>
+        </ol>
+
+        <ol class="timeline is-hidden" data-timeline="24">
+          <li class="timeline-item free"><time>오전</time><div><span class="event-type">TODO</span><h3>스노클링 또는 배낚시</h3><p>장소·예약 시간 미정</p></div></li>
+          <li class="timeline-item free"><time>오후</time><div><span class="event-type">TODO</span><h3>배낚시 또는 스노클링</h3><p>오전 일정과 반대로 배치 예정</p></div></li>
+          <li class="timeline-item free"><time>저녁</time><div><span class="event-type">FREE</span><h3>자유 시간</h3><p>오름·계곡·다른 제주 명소를 추가할 자리</p></div></li>
+        </ol>
+
+        <ol class="timeline is-hidden" data-timeline="25">
+          <li class="timeline-item important"><time>07:30</time><div><span class="event-type">렌터카</span><h3>제주빌리고 반납</h3><p>제주공항렌터카 본사 · 064-744-4800</p></div></li>
+          <li class="timeline-item important"><time>07:55</time><div><span class="event-type">항공</span><h3>제주공항 출발</h3><p>서울행 항공편</p></div></li>
+          <li class="timeline-item important"><time>09:10</time><div><span class="event-type">항공</span><h3>서울 도착</h3><p>여행 종료</p></div></li>
+        </ol>
+      </section>
+
+      <section class="panel" id="food" role="tabpanel" aria-labelledby="food-tab" hidden>
+        <div class="section-heading"><div><p class="eyebrow">FOOD LIST</p><h2>먹을거</h2></div><button class="location-button" id="location-button">⌖ 내 위치</button></div>
+        <div class="map-placeholder" id="map-status"><span>⌖</span><strong>현재 위치 + 추천 맛집 지도</strong><p>내 위치 버튼을 누르면 위치 권한을 요청합니다.<br />맛집 좌표를 추가하면 실제 지도와 거리를 표시할 수 있어요.</p></div>
+        <p class="location-message" id="location-message" aria-live="polite"></p>
+        <div class="food-grid">
+          <article class="place-card"><p class="place-category">흑돼지</p><h3>중문흑돼지천국</h3><p>주소·평점 추가 예정</p><a href="https://map.kakao.com/link/search/%EC%A4%91%EB%AC%B8%ED%9D%91%EB%8F%BC%EC%A7%80%EC%B2%9C%EA%B5%AD" target="_blank" rel="noreferrer">카카오맵에서 찾기 ↗</a></article>
+          <article class="place-card"><p class="place-category">갈치조림</p><h3>기원은갈치</h3><p>중문 통갈치조림구이</p><a href="https://map.kakao.com/link/search/%EA%B8%B0%EC%9B%90%EC%9D%80%EA%B0%88%EC%B9%98" target="_blank" rel="noreferrer">카카오맵에서 찾기 ↗</a></article>
+          <article class="place-card"><p class="place-category">한식</p><h3>한라산아래 첫마을</h3><p>부모님 모시기 좋은 곳</p><a href="https://map.kakao.com/link/search/%ED%95%9C%EB%9D%BC%EC%82%B0%EC%95%84%EB%9E%98%20%EC%B2%AB%EB%A7%88%EC%9D%84" target="_blank" rel="noreferrer">카카오맵에서 찾기 ↗</a></article>
+          <article class="place-card"><p class="place-category">한식</p><h3>바람에 스치운다 · 담백</h3><p>아이와 함께 가기 좋은 후보</p></article>
+          <article class="place-card"><p class="place-category">양고기</p><h3>리볼버</h3><p>메쉬포테이토 · 데이트</p></article>
+          <article class="place-card"><p class="place-category">돼지고기</p><h3>연리지 가든</h3><p>주소·거리 추가 예정</p></article>
+          <article class="place-card"><p class="place-category">카페 · 베이커리</p><h3>위이 · 시스터필드</h3><p>좋은 카페 · 식빵</p></article>
+          <article class="place-card"><p class="place-category">간식 · 이색</p><h3>백한철꽈배기 · 로빙화</h3><p>추가 후보: 밀밀스, 요리바카, 평대성게국수, 플라워웨이브, 수리코</p></article>
+        </div>
+      </section>
+
+      <section class="panel" id="activity" role="tabpanel" aria-labelledby="activity-tab" hidden>
+        <div class="section-heading"><div><p class="eyebrow">TO DO</p><h2>할거</h2></div></div>
+        <article class="activity-card featured"><span>8/24</span><h3>스노클링</h3><p>오전 또는 오후 · 장소와 예약 정보 추가 예정</p><button type="button" class="outline-button">정보 추가 예정</button></article>
+        <article class="activity-card featured"><span>8/24</span><h3>배낚시</h3><p>오전 또는 오후 · 장소와 예약 정보 추가 예정</p><button type="button" class="outline-button">정보 추가 예정</button></article>
+        <article class="activity-card"><span>관리</span><h3>제주도 집 보기</h3><p>제주시 한경면 저지리 2068-2</p><a href="https://map.kakao.com/link/search/%EC%A0%9C%EC%A3%BC%EC%8B%9C%20%ED%95%9C%EA%B2%BD%EB%A9%B4%20%EC%A0%80%EC%A7%80%EB%A6%AC%202068-2" target="_blank" rel="noreferrer">위치 보기 ↗</a></article>
+        <div class="empty-state"><span>＋</span><p>오름, 계곡, 다른 명소를<br />여기에 추가해요.</p></div>
+      </section>
+
+      <section class="panel" id="info" role="tabpanel" aria-labelledby="info-tab" hidden>
+        <div class="section-heading"><div><p class="eyebrow">TRIP DETAILS</p><h2>여행 정보</h2></div></div>
+        <article class="info-card"><p class="place-category">STAY</p><h3>포에마스테이</h3><p>제주시 한림읍 명월로 13<br />(명월리 1867-1), 63014</p><dl><div><dt>체크인</dt><dd>8/23 15:00</dd></div><div><dt>체크아웃</dt><dd>8/25 11:00</dd></div></dl></article>
+        <article class="info-card"><p class="place-category">RENTAL CAR</p><h3>제주빌리고</h3><p>제주공항렌터카 본사 · 공항 약 3분 거리</p><dl><div><dt>인수</dt><dd>8/23 07:30</dd></div><div><dt>반납</dt><dd>8/25 07:30</dd></div></dl><a href="tel:064-744-4800">전화 064-744-4800</a><p class="small-note">공항 5번 게이트 건너편 렌터카하우스 앞 5구역(바닥 8번)에서 셔틀 탑승 · 10~15분 간격</p></article>
+        <article class="info-card"><p class="place-category">FLIGHT</p><h3>항공편</h3><dl><div><dt>8/23</dt><dd>06:15 출발 · 07:30 제주 도착</dd></div><div><dt>8/25</dt><dd>07:55 제주 출발 · 09:10 서울 도착</dd></div></dl></article>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
