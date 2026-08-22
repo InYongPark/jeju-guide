@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#0c6e68" />
     <meta name="description" content="2026 제주도 여행 가이드" />
     <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha512-p4NxAoJBhIINfQ0sS4Ww1J23aZQZ8NtDb8Y2L4E10zDP/4zQYHSMvJcU0R0Z7O8g8YvE6EwXK7Q7YF4u5gP6wQ==" crossorigin="" />
     <link rel="stylesheet" href="styles.css" />
     <title>JEJU · 08.23—08.25</title>
   </head>
@@ -66,18 +67,13 @@
 
       <section class="panel" id="food" role="tabpanel" aria-labelledby="food-tab" hidden>
         <div class="section-heading"><div><p class="eyebrow">FOOD LIST</p><h2>먹을거</h2></div><button class="location-button" id="location-button">⌖ 내 위치</button></div>
-        <div class="map-placeholder" id="map-status"><span>⌖</span><strong>현재 위치 + 추천 맛집 지도</strong><p>내 위치 버튼을 누르면 위치 권한을 요청합니다.<br />맛집 좌표를 추가하면 실제 지도와 거리를 표시할 수 있어요.</p></div>
-        <p class="location-message" id="location-message" aria-live="polite"></p>
-        <div class="food-grid">
-          <article class="place-card"><p class="place-category">흑돼지</p><h3>중문흑돼지천국</h3><p>주소·평점 추가 예정</p><a href="https://map.kakao.com/link/search/%EC%A4%91%EB%AC%B8%ED%9D%91%EB%8F%BC%EC%A7%80%EC%B2%9C%EA%B5%AD" target="_blank" rel="noreferrer">카카오맵에서 찾기 ↗</a></article>
-          <article class="place-card"><p class="place-category">갈치조림</p><h3>기원은갈치</h3><p>중문 통갈치조림구이</p><a href="https://map.kakao.com/link/search/%EA%B8%B0%EC%9B%90%EC%9D%80%EA%B0%88%EC%B9%98" target="_blank" rel="noreferrer">카카오맵에서 찾기 ↗</a></article>
-          <article class="place-card"><p class="place-category">한식</p><h3>한라산아래 첫마을</h3><p>부모님 모시기 좋은 곳</p><a href="https://map.kakao.com/link/search/%ED%95%9C%EB%9D%BC%EC%82%B0%EC%95%84%EB%9E%98%20%EC%B2%AB%EB%A7%88%EC%9D%84" target="_blank" rel="noreferrer">카카오맵에서 찾기 ↗</a></article>
-          <article class="place-card"><p class="place-category">한식</p><h3>바람에 스치운다 · 담백</h3><p>아이와 함께 가기 좋은 후보</p></article>
-          <article class="place-card"><p class="place-category">양고기</p><h3>리볼버</h3><p>메쉬포테이토 · 데이트</p></article>
-          <article class="place-card"><p class="place-category">돼지고기</p><h3>연리지 가든</h3><p>주소·거리 추가 예정</p></article>
-          <article class="place-card"><p class="place-category">카페 · 베이커리</p><h3>위이 · 시스터필드</h3><p>좋은 카페 · 식빵</p></article>
-          <article class="place-card"><p class="place-category">간식 · 이색</p><h3>백한철꽈배기 · 로빙화</h3><p>추가 후보: 밀밀스, 요리바카, 평대성게국수, 플라워웨이브, 수리코</p></article>
+        <div class="map-wrap">
+          <div id="food-map" aria-label="현재 위치와 추천 맛집 지도"></div>
+          <div class="map-loading" id="map-status"><span>⌖</span><strong>제주 맛집 지도를 준비 중</strong><p>맛집 위치를 하나씩 불러오고 있어요.</p></div>
+          <button class="map-all-button" id="map-all-button" type="button">추천 맛집 전체 보기</button>
         </div>
+        <p class="location-message" id="location-message" aria-live="polite"></p>
+        <div class="food-grid" id="food-list"></div>
       </section>
 
       <section class="panel" id="activity" role="tabpanel" aria-labelledby="activity-tab" hidden>
@@ -95,6 +91,7 @@
         <article class="info-card"><p class="place-category">FLIGHT</p><h3>항공편</h3><dl><div><dt>8/23</dt><dd>06:15 출발 · 07:30 제주 도착</dd></div><div><dt>8/25</dt><dd>07:55 제주 출발 · 09:10 서울 도착</dd></div></dl></article>
       </section>
     </main>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha512-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBoA3A4Q9G3QY3VXsyHcN0HUG2R8uR3W3wOpyKj7uFZ5jM5Q==" crossorigin=""></script>
     <script src="app.js"></script>
   </body>
 </html>
